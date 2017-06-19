@@ -2,7 +2,7 @@ let express = require('express');
 let port = process.env.PORT || 8080;
 let bodyParser = require('body-parser');
 let app = express();
-let db = require('./lib/db-config')
+let db = require('./public/lib/db-config')
 
 //middleware
 app.use(bodyParser.urlencoded({ extended: false }));
