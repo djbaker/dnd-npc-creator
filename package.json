@@ -1,0 +1,25 @@
+{
+  "name": "dnd-npc-creator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djbaker/dnd-npc-creator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djbaker/dnd-npc-creator/issues"
+  },
+  "homepage": "https://github.com/djbaker/dnd-npc-creator#readme",
+  "dependencies": {
+    "eslint": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
