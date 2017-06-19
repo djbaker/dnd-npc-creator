@@ -5,8 +5,6 @@ let bodyParser = require('body-parser');
 
 let app = express();
 
-
-// app.set('views', __dirname + '/public');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
@@ -14,17 +12,20 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public/login.html');
 });
 
-app.post('/login', function (req, res, next) {
-  console.log(req.body)
-  console.log('attempting to login');
+app.post('/login', function (req, res) {
+  console.log(req.body);
   res.sendFile(__dirname + '/public/index.html'); 
 });
 
-app.post('/createlogin', function (req, res, next) {
+app.post('/createlogin', function (req, res) {
   console.log('attempting to create login');
   res.sendFile(__dirname + '/public/index.html');
 });
 
+app.post('/signout', function (req, res) {
+  console.log('attempting to signout');
+  res.sendFile(__dirname + '/public/login.html');
+});
 
 
 app.listen(port, function() {
