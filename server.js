@@ -17,6 +17,10 @@ app.get('/signout', function (req, res) {
   res.sendFile(__dirname + 'public/login.html');
 });
 
+app.get('/lib/app.js', function (req, res) {
+  res.sendFile(__dirname + '/public/lib/app.js');
+})
+
 
 //route post requests
 app.post('/login', function (req, res) {
