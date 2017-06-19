@@ -1,16 +1,17 @@
 let express = require('express');
 let port = process.env.port || 8080;
-let bodyParser = require('body-parser')
+let bodyParser = require('body-parser');
 
 
 let app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }))
+
+// app.set('views', __dirname + '/public');
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/', function (req, res) {
-  res.write('hello');
-  res.end()
+  res.sendfile(__dirname + '/public/index.html');
 });
 
 
