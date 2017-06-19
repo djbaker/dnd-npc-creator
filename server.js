@@ -14,14 +14,15 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public/login.html');
 });
 
-app.post('/login', function (req, res) {
+app.post('/login', function (req, res, next) {
+  console.log(req.body)
   console.log('attempting to login');
-  // req.redirect('/');  
+  res.sendFile(__dirname + '/public/index.html'); 
 });
 
-app.post('/createlogin', function (req, res) {
+app.post('/createlogin', function (req, res, next) {
   console.log('attempting to create login');
-  // req.redirect('/');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 
