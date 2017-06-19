@@ -10,7 +10,7 @@ angular.module('ngApp', [])
     controllerAs: 'ctrl',
     bindToController: true,
     contrtoller: 'appCtrl',
-    template: `<div>Hello from our directive</div>`
+    template: `<div ng-controller="appCtrl">Hello from our directive</div>`
   };
 
 });
