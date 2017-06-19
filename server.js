@@ -13,6 +13,10 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public/login.html');
 });
 
+app.get('/signout', function (req, res) {
+  res.sendFile(__dirname + 'public/login.html');
+});
+
 
 //route post requests
 app.post('/login', function (req, res) {
