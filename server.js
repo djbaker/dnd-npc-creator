@@ -11,9 +11,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/login.html');
 });
 
+app.post('/login', function (req, res) {
+  console.log('attempting to login');
+  // req.redirect('/');  
+});
+
+app.post('/createlogin', function (req, res) {
+  console.log('attempting to create login');
+  // req.redirect('/');
+});
 
 
 
