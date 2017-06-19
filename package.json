@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/djbaker/dnd-npc-creator#readme",
   "dependencies": {
-    "eslint": "^4.0.0"
+    "body-parser": "^1.17.2",
+    "eslint": "^4.0.0",
+    "express": "^4.15.3"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
