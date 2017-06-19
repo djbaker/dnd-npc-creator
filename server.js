@@ -1,5 +1,5 @@
 let express = require('express');
-let port = process.env.port || 8080;
+let port = process.env.PORT || 8080;
 let bodyParser = require('body-parser');
 let app = express();
 
