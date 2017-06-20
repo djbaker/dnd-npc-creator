@@ -1,10 +1,17 @@
 let Promise = require('bluebird');
 let db = require('./db-config');
+let http = require('http')
 
 module.exports = {
   getClassData: (clas, level) => {
     return new Promise((resolve, reject) => {
-
+      http.get({
+        hostname: 'http://www.dnd5eapi.co',
+        port: 80,
+        path: `/api/classes/${clas}levels`
+      }, (response) => {
+        console.log(response);
+      });
     });
   },
   getCurrentNpcs: (mongouri, user) => {
