@@ -13,5 +13,13 @@ mongoose.connection.on('error',function (err) {
 });
 
 
+let dmSchema = new mongoose.Schema({
+  username: {type: String, index: {unique: true}},
+  password: String,
+});
 
-module.exports = mongoose;
+let Dm = mongoose.model('Dm', dmSchema);
+
+
+module.exports.db = mongoose;
+module.exports.dm = Dm;

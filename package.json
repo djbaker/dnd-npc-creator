@@ -5,9 +5,9 @@
   "main": "index.js",
   "eslintConfig": {
     "env": {
-        "browser": true,
-        "node": true,
-        "es6": true
+      "browser": true,
+      "node": true,
+      "es6": true
     }
   },
   "scripts": {
@@ -29,11 +29,12 @@
     "body-parser": "^1.17.2",
     "eslint": "^4.0.0",
     "express": "^4.15.3",
+    "express-session": "^1.15.3",
     "mongoose": "^4.10.7"
   },
   "engines": {
     "node": "7.9.0"
-  }, 
+  },
   "devDependencies": {
     "nodemon": "^1.11.0"
   }
