@@ -19,6 +19,10 @@ app.get('/signout', function (req, res) {
 
 app.get('/lib/app.js', function (req, res) {
   res.sendFile(__dirname + '/public/lib/app.js');
+});
+
+app.get('/style.css', function (req, res) {
+  res.sendFile(__dirname + '/public/style.css');
 })
 
 

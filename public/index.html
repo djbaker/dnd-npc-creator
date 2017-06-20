@@ -2,20 +2,21 @@
 <html>
 <head>
   <title>D&D NPC Creator</title>
-  <style type="text/css" src="style.css"></style>
+<link rel="stylesheet" type="text/css" href="style.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 
 </head>
 <body>
 <h3>Wecome!</h3> 
+<form action="/signout" method="post" style="position:absolute;right:20px">
+  <button class="signout">Signout</button>
+</form>
 <div >
   <app-container ng-app="ngApp"></app-container>
 </div>
 <script type="text/javascript" src="lib/app.js"></script>
 
-<form action="/signout" method="post">
-<button class="signout">Signout</button>
-</form>
+
 
 </body>
 </html>

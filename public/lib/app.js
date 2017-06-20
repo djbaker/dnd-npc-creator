@@ -50,7 +50,7 @@ angular.module('ngApp', [])
     controllerAs: 'ctrl',
     bindToController: true,
     template: 
-    `<div>
+    `<div class='npccontainer'>
       <div class="name">Name: {{ctrl.n.name}}</div>
       <div class="class">Class: {{ctrl.n.class}}</div>
       <div class="race">Race: {{ctrl.n.race}}</div>
