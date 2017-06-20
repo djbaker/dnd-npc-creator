@@ -2,7 +2,7 @@ angular.module('ngApp', [])
 
 .controller('appCtrl', ($scope, $http) => {
   $scope.getSkills = (clas, level) => {
-    $http.get(`//dnd5eapi.co/api/classes/${clas}/levels`)
+    $http.get(`//www.dnd5eapi.co/api/classes/${clas}/levels`)
     .then((data) => {
       let ret = [];
       for (var i = 0; i < level; i++) {
