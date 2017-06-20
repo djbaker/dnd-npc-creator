@@ -20,6 +20,21 @@ let dmSchema = new mongoose.Schema({
 
 let Dm = mongoose.model('Dm', dmSchema);
 
+let npcSchema = new mongoose.Schema({
+  name: String,
+  class: String,
+  race: String,
+  level: { type: Number, min: 1, max: 20 },
+  hp: Number,
+  description: String,
+  skills: [String]
+});
+
+let Npc = mongoose.model('Npc', npcSchema);
+
+
+
 
 module.exports.db = mongoose;
 module.exports.dm = Dm;
+module.exports.npc = Npc;
