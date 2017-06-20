@@ -27,7 +27,8 @@ let npcSchema = new mongoose.Schema({
   level: { type: Number, min: 1, max: 20 },
   hp: Number,
   description: String,
-  skills: [String]
+  skills: [String],
+  username: String,
 });
 
 let Npc = mongoose.model('Npc', npcSchema);
