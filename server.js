@@ -8,7 +8,7 @@ let session = require('express-session');
 
 //middleware
 app.use(session({
-  secret: 'shhh, it\'s a secret',
+  secret: 'what what',
   resave: false,
   saveUninitialized: true
 }));
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 //route get requests
-app.get('/', function (req, res) {
+app.get('/', (req,res) => {
   // console.log(req.session)
   if (!req.session.user) {
     res.sendFile(__dirname + '/public/login.html');
@@ -25,21 +25,29 @@ app.get('/', function (req, res) {
   }
 });
 
-app.get('/signout', function (req, res) {
+app.get('/signout', (req,res) => {
   res.sendFile(__dirname + 'public/login.html');
 });
 
-app.get('/lib/app.js', function (req, res) {
+app.get('/lib/app.js', (req,res) => {
   res.sendFile(__dirname + '/public/lib/app.js');
 });
 
-app.get('/style.css', function (req, res) {
+app.get('/style.css', (req,res) => {
   res.sendFile(__dirname + '/public/style.css');
-})
+});
+
+app.get('/npcs', (req, res) => {
+  console.log('getting request for npc list')
+  helpers.getCurrentNpcs(req.session.user)
+  .then((data) => {
+    res.send(data);
+  });
+});
 
 
 //route post requests
-app.post('/login', function (req, res) {
+app.post('/login', (req,res) => {
   console.log(req.body)
   let username = req.body['DM name'];  
   helpers.passAuth(username, req.body.Password)
@@ -57,7 +65,7 @@ app.post('/login', function (req, res) {
   });
 });
 
-app.post('/createlogin', function (req, res) {
+app.post('/createlogin', (req,res) => {
   let username = req.body['DM name']; 
   helpers.isUser(username)
   .then((found) => {
@@ -76,16 +84,25 @@ app.post('/createlogin', function (req, res) {
   });
 });
 
-app.post('/signout', function (req, res) {
+app.post('/signout', (req,res) => {
   console.log('logging out', req.session);
   req.session.destroy(() => {
     res.redirect('/')
   })
 });
 
+app.post('/addclass', (req, res) => {
+  let results = req.body;
+  results.skills = JSON.parse(req.body.skills);
+  helpers.createNPC(results, req.session.user)
+  .then((data) => {
+    res.redirect('/');
+  });
+});
+
 
 
 //start listening
-app.listen(port, function() {
+app.listen(port, () => {
   console.log(`DND server is listening on ${port}`);
 });

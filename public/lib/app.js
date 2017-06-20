@@ -18,10 +18,16 @@ angular.module('ngApp', [])
   this.submit = () => {
 
   };
-  $scope.currentNpcs = [{name: 'Grog', class: 'Barbarian', race: 'Human', level: '3', hp: 36, description: 'he\'s a man', skills: ['Rage', 'Unarmored Defense', 'Reckless Attack', 'Danger Sense', 'Primal Path']}];
-  this.getCurrentNpcs = () => {
-
+  $scope.currentNpcs = [];
+  $scope.getCurrentNpcs = () => {
+    console.log('test')
+    $http.get('/npcs')
+    .then((data) => {
+      $scope.currentNpcs = data.data;
+    })
   };
+  $scope.getCurrentNpcs();
+
 })
 
 .directive('appContainer', () => {
@@ -142,6 +148,7 @@ angular.module('ngApp', [])
         <ol ng-init="skills=[]">
           <li ng-repeat="skill in skills">{{skill}}</li>
         </ol>
+        <input type="text" value={{skills}} style="display:none" name="skills">
       </form>
     </div>`
   }
