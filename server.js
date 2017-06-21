@@ -38,14 +38,19 @@ app.get('/style.css', (req,res) => {
 });
 
 app.get('/npcs', (req, res) => {
-  console.log('getting request for npc list')
   helpers.getCurrentNpcs(req.session.user)
   .then((data) => {
     res.send(data);
   });
 });
 
+app.get('/Almendra-regular.otf', (req, res) => {
+  res.sendFile(__dirname + '/public/Almendra-Regular.otf');
+});
 
+app.get('/back.jpg', (req, res) => {
+  res.sendFile(__dirname + '/public/back.jpg');
+});
 //route post requests
 app.post('/login', (req,res) => {
   console.log(req.body)
@@ -99,6 +104,14 @@ app.post('/addclass', (req, res) => {
     res.redirect('/');
   });
 });
+
+app.post('/deletechar', (req, res) => {
+  let id = JSON.parse(req.body.id)['_id'];
+  helpers.deleteNpc(id)
+  .then((data) => {
+    res.redirect('/')
+  })
+})
 
 
 

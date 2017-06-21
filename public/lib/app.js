@@ -32,6 +32,9 @@ angular.module('ngApp', [])
     })
   };
   $scope.getCurrentNpcs();
+  $scope.delete = (char) => {
+    console.log(char)
+  }
 
 })
 
@@ -42,7 +45,7 @@ angular.module('ngApp', [])
     bindToController: true,
     template: `
     <div ng-controller="appCtrl as app">
-      <app npcs="currentNpcs"></app>
+      <app npcs="currentNpcs" deleteChar="delete"></app>
     </div>`    
   }
 })
@@ -51,17 +54,18 @@ angular.module('ngApp', [])
   return {
     scope: {
       npcs: '<',
+      deleteChar: '<'
     },
     controller: 'appCtrl',
     controllerAs: 'ctrl',
     bindToController: true,
     template: 
-    `<h4>Your current NPC's</h4>
-      <npc-list n="np"
+    `<h2 style="padding-left:5px">Your current NPC's</h2>
+      <npc-list n="np" deleteChar=ctrl.deleteChar
       ng-repeat="np in ctrl.npcs track by $index"
       >
       </npc-list>
-    <h4>Add an NPC?</h4>
+    <h2 style="padding-top:30px;padding-left:5px">Add an NPC?</h2>
     <add-npc></add-npc>
     `
   };
@@ -71,22 +75,54 @@ angular.module('ngApp', [])
 .directive('npcList', () => {
   return {
     scope: {
-      n: '<'
+      n: '<',
+      deleteChar: '<'
     },
     controller: 'appCtrl',    
     controllerAs: 'ctrl',
     bindToController: true,
     template: 
-    `<div class='npccontainer'>
+    ` 
+    <div class='npccontainer'>
       <div class="name">Name: {{ctrl.n.name}}</div>
       <div class="class">Class: {{ctrl.n.class}}</div>
       <div class="race">Race: {{ctrl.n.race}}</div>
       <div class="level">Level: {{ctrl.n.level}}</div>
       <div class="hp">HP: {{ctrl.n.hp}}</div>
       <div class="description">Description: {{ctrl.n.description}}</div>
-      <div class="skills">Skills: {{ctrl.n.skills}}</div>
-    </div>`
-  }
+      <div class="skills">Skills:</div>
+      <div class="tab">{{ctrl.n.skills}}</div>
+    
+      <div class="container">
+        <button type="button" class="btn btn btn-xs" data-toggle="modal" data-target="#myModal">Delete NPC?</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Are you sure you want to delete this NPC?  This cannot be undone.</h4>
+              </div>
+              <div class="modal-footer">
+              <form action="/deletechar" method="post">
+                <input type="text"style="display:none" name="id" value={{ctrl.n}}>
+                <button type="submit" class="btn btn-danger btn-lg">Delete</button>
+              </form>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+`
+  };
 })
 
 .directive('addNpc', () => {
@@ -98,7 +134,7 @@ angular.module('ngApp', [])
     controllerAs: 'props',
     bindToController: true,
     template: `
-    <div>
+    <div style="padding-left:20px">
       <form action="/addclass" method="post">
         <button type="submit">Submit</button>
         <div>Name</div>

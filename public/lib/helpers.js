@@ -4,6 +4,15 @@ let http = require('http')
 
 
 module.exports = {
+  deleteNpc: id => {
+    return new Promise((resolve, reject) => {
+      db.npc.findByIdAndRemove(id)
+      .then(data => {
+        resolve(data);
+      });
+    });
+  },
+
   getClassData: (clas, level) => {
     return new Promise((resolve, reject) => {
       http.get({
