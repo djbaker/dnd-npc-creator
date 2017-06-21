@@ -2,9 +2,11 @@ angular.module('ngApp', [])
 
 .controller('appCtrl', ($scope, $http) => {
   $scope.getSkills = (clas, level) => {
+    // $http.jsonp(`http://www.dnd5eapi.co/api/classes/${clas}/levels`)
     $http({
       method: 'GET',
       url: `http://www.dnd5eapi.co/api/classes/${clas}/levels`,
+      crossDomain: false
     })
     .then((data) => {
       let ret = [];
