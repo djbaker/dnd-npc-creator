@@ -6,7 +6,7 @@ angular.module('ngApp', [])
     $http({
       method: 'GET',
       url: `http://www.dnd5eapi.co/api/classes/${clas}/levels`,
-      crossDomain: false
+      crossDomain: true
     })
     .then((data) => {
       let ret = [];
