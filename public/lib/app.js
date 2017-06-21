@@ -25,16 +25,12 @@ angular.module('ngApp', [])
   };
   $scope.currentNpcs = [];
   $scope.getCurrentNpcs = () => {
-    console.log('test')
     $http.get('/npcs')
     .then((data) => {
       $scope.currentNpcs = data.data;
     })
   };
   $scope.getCurrentNpcs();
-  $scope.delete = (char) => {
-    console.log(char)
-  }
 
 })
 
@@ -45,7 +41,7 @@ angular.module('ngApp', [])
     bindToController: true,
     template: `
     <div ng-controller="appCtrl as app">
-      <app npcs="currentNpcs" deleteChar="delete"></app>
+      <app npcs="currentNpcs"></app>
     </div>`    
   }
 })
@@ -54,14 +50,13 @@ angular.module('ngApp', [])
   return {
     scope: {
       npcs: '<',
-      deleteChar: '<'
     },
     controller: 'appCtrl',
     controllerAs: 'ctrl',
     bindToController: true,
     template: 
     `<h2 style="padding-left:5px">Your current NPC's</h2>
-      <npc-list n="np" deleteChar=ctrl.deleteChar
+      <npc-list n="np"
       ng-repeat="np in ctrl.npcs track by $index"
       >
       </npc-list>
@@ -76,7 +71,6 @@ angular.module('ngApp', [])
   return {
     scope: {
       n: '<',
-      deleteChar: '<'
     },
     controller: 'appCtrl',    
     controllerAs: 'ctrl',
@@ -128,8 +122,7 @@ angular.module('ngApp', [])
 .directive('addNpc', () => {
   return {
 
-    controller: () => {
-      this.skills = ['hello'];  
+    controller: () => {  
     },
     controllerAs: 'props',
     bindToController: true,
@@ -192,8 +185,8 @@ angular.module('ngApp', [])
         <input type="text" value={{skills}} style="display:none" name="skills">
       </form>
     </div>`
-  }
-})
+  };
+});
 
 
 

@@ -20,7 +20,6 @@ module.exports = {
         port: 80,
         path: `/api/classes/${clas}levels`
       }, (response) => {
-        // console.log(response);
       });
     });
   },
@@ -82,7 +81,6 @@ module.exports = {
   passAuth: (username, password) => {
     return new Promise((resolve, reject) => {
       db.dm.findOne({username: username, password: password}).exec((err, found) => {
-        // console.log(err, found, 'results from findOne')
         resolve(!!found);
       });
     });
